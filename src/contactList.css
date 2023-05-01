@@ -1,0 +1,97 @@
+/* ContactList styles */
+
+.contact-add {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.contact-add h1 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.contact-add input[type="text"],
+.contact-add input[type="email"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 95%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.contact-add button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.contact-add button:last-child {
+  margin-right: 0;
+}
+
+.contact-add button:hover {
+  background-color: #3e8e41;
+}
+
+.contact_list {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.contact_list header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.contact_list header img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.contact_list h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.data {
+  margin-top: 20px;
+}
+
+.contact {
+  margin-bottom: 10px;
+}
+
+.contact h2 {
+  display: flex;
+  align-items: center;
+}
+
+.contact h2 img {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.contact h2 img:hover {
+  filter: brightness(0.8);
+}
+
+.contact p {
+  margin: 0;
+}
+
+.contact hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
