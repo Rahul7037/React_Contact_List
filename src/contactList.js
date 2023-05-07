@@ -1,30 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./contactList.css";
 
 function ContactList() {
-    const [contacts, setContacts] = useState([
-        {
-            id: 1,
-            name: "John Doe",
-            phone: "123-456-7890",
-            email: "johndoe@example.com",
-        },
-        {
-            id: 2,
-            name: "Jane Smith",
-            phone: "555-555-5555",
-            email: "janesmith@example.com",
-        },
-        {
-            id: 3,
-            name: "Bob Johnson",
-            phone: "555-123-4567",
-            email: "bobjohnson@example.com",
-        },
-    ]);
-
+    const [contacts, setContacts] = useState([]);
     const [editedContact, setEditedContact] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    // Load contacts from local storage on component mount
+    useEffect(() => {
+        const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+        if (savedContacts) {
+            setContacts(savedContacts);
+        }
+    }, []);
+
+    // Save contacts to local storage whenever the 'contacts' state is updated
+    useEffect(() => {
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+    }, [contacts]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,7 +29,6 @@ function ContactList() {
         setContacts([newContact, ...contacts]);
         e.target.reset();
     };
-
     const handleDelete = (id) => {
         const updatedContacts = contacts.filter((contact) => contact.id !== id);
         setContacts(updatedContacts);
@@ -108,15 +100,15 @@ function ContactList() {
                         {contacts.length === 0 ? (
                             <div>No contacts found.</div>
                         ) : (
-                            
-                                contacts.map((contact) => (
-                                    <div key={contact.id} className="contact">
-                                        <h2>{contact.name}<img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="Don't Image" onClick={() => handleEdit(contact.id)}></img>
-                                            <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Nothing" onClick={() => handleDelete(contact.id)}></img></h2>
-                                        <p>{contact.phone}</p>
-                                        <p>{contact.email}</p><hr />
-                                    </div>
-                                ))
+
+                            contacts.map((contact) => (
+                                <div key={contact.id} className="contact">
+                                    <h2>{contact.name}<img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="Don't Image" onClick={() => handleEdit(contact.id)}></img>
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Nothing" onClick={() => handleDelete(contact.id)}></img></h2>
+                                    <p>{contact.phone}</p>
+                                    <p>{contact.email}</p><hr />
+                                </div>
+                            ))
                         )}
                     </div>
                 )};
